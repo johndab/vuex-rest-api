@@ -42,7 +42,8 @@ var StoreCreator = /** @class */ (function () {
         this.errorSuffix = "FAILED";
         this.resource = resource;
         this.options = Object.assign({
-            createStateFn: false
+            createStateFn: false,
+            namespaced: false
         }, options);
         this.store = this.createStore();
     }
@@ -178,6 +179,7 @@ var StoreCreator = /** @class */ (function () {
     StoreCreator.prototype.createStore = function () {
         var state = this.createState();
         return {
+            namespaced: this.options.namespaced,
             state: state,
             mutations: this.createMutations(state),
             actions: this.createActions()
